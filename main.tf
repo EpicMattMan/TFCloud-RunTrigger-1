@@ -37,7 +37,7 @@ resource "azurerm_network_interface" "nic1" {
 
     ip_configuration {
     name                          = "ipconfig1"
-    subnet_id                     = date.terraform_remote_state.network.outputs.subnet1_id 
+    subnet_id                     = data.terraform_remote_state.network.outputs.subnet1_id 
     private_ip_address_allocation  = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.pip1.id
   }
