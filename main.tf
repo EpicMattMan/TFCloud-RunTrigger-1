@@ -23,8 +23,8 @@ provider "azurerm" {
 #Deploy Public IP
 resource "azurerm_public_ip" "pip1" {
   name                = "TFC-pip1"
-  location            = data.terraform_remote_state.netowrk.outputs.location
-  resource_group_name = data.terraform_remote_state.netowrk.outputs.rgName  
+  location            = data.terraform_remote_state.network.outputs.location
+  resource_group_name = data.terraform_remote_state.network.outputs.rgName  
   allocation_method   = "Dynamic"
   sku                 = "Basic"
 }
@@ -32,8 +32,8 @@ resource "azurerm_public_ip" "pip1" {
 #Create NIC
 resource "azurerm_network_interface" "nic1" {
   name                = "TFC-TestVM-Nic"  
-  location            = data.terraform_remote_state.netowrk.outputs.location  
-  resource_group_name = data.terraform_remote_state.netowrk.outputs.rgName 
+  location            = data.terraform_remote_state.network.outputs.location  
+  resource_group_name = data.terraform_remote_state.network.outputs.rgName 
 
     ip_configuration {
     name                          = "ipconfig1"
@@ -46,8 +46,8 @@ resource "azurerm_network_interface" "nic1" {
 #Create Boot Diagnostic Account
 resource "azurerm_storage_account" "sa" {
   name                     = "tfcdiagnosticstore1191" 
-  resource_group_name      = data.terraform_remote_state.netowrk.outputs.rgName   
-  location                 = data.terraform_remote_state.netowrk.outputs.location
+  resource_group_name      = data.terraform_remote_state.network.outputs.rgName   
+  location                 = data.terraform_remote_state.network.outputs.location
    account_tier            = "Standard"
    account_replication_type = "LRS"
 
@@ -59,8 +59,8 @@ resource "azurerm_storage_account" "sa" {
 #Create Virtual Machine
 resource "azurerm_virtual_machine" "TFCVM" {
   name                  = "TF-TestVM-1"  
-  location              = data.terraform_remote_state.netowrk.outputs.location 
-  resource_group_name   = data.terraform_remote_state.netowrk.outputs.rgName 
+  location              = data.terraform_remote_state.network.outputs.location 
+  resource_group_name   = data.terraform_remote_state.network.outputs.rgName 
   network_interface_ids = [azurerm_network_interface.nic1.id]
   vm_size               = "Standard_B1s"
   delete_os_disk_on_termination = true
