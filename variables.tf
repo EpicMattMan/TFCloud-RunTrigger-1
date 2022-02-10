@@ -1,8 +1,3 @@
-variable "rgName" {
-    type = string
-    default = "TFCloud-Trigger-rg"
-}
-
 variable "subscription_id" {
     type = string
     default = "e9cb848b-86d1-4dcc-8839-0b0006978952"
