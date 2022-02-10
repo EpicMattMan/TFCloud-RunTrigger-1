@@ -18,7 +18,7 @@ provider "azurerm" {
   tenant_id = var.tenant_id
 
   features{}
-
+}
   
 #Deploy Public IP
 resource "azurerm_public_ip" "pip1" {
