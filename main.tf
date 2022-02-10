@@ -4,7 +4,7 @@ data "terraform_remote_state" "network" {
   config = {
     organization = "Awesome-Company"
     workspaces = {
-          name = "TFCloud-TriggerDeploy"
+          name = "TFCloud-Trigger-Network"
     }
   }
 }
